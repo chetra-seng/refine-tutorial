@@ -25,9 +25,13 @@ import routerBindings, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 import { Header } from "./components/header";
+import { dataProvider } from "rest-data-provider";
+import BlogPostList from "pages/blog-posts/list";
+import BlogPostEdit from "pages/blog-posts/edit";
+import BlogPostShow from "pages/blog-posts/show";
+import BlogPostCreate from "pages/blog-posts/create";
 
 function App() {
   return (
@@ -71,10 +75,10 @@ function App() {
                       element={<NavigateToResource resource="blog_posts" />}
                     />
                     <Route path="blog-posts">
-                      <Route index element={<MuiInferencer />} />
-                      <Route path="show/:id" element={<MuiInferencer />} />
-                      <Route path="edit/:id" element={<MuiInferencer />} />
-                      <Route path="create" element={<MuiInferencer />} />
+                      <Route index element={<BlogPostList />} />
+                      <Route path="show/:id" element={<BlogPostShow />} />
+                      <Route path="edit/:id" element={<BlogPostEdit />} />
+                      <Route path="create" element={<BlogPostCreate />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
