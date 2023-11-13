@@ -32,6 +32,7 @@ import BlogPostList from "pages/blog-posts/list";
 import BlogPostEdit from "pages/blog-posts/edit";
 import BlogPostShow from "pages/blog-posts/show";
 import BlogPostCreate from "pages/blog-posts/create";
+import authProvider from "auth-provider/authProvider";
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
                     },
                   },
                 ]}
+                authProvider={authProvider}
               >
                 <Routes>
                   <Route
@@ -83,8 +85,17 @@ function App() {
                       <Route path="edit/:id" element={<BlogPostEdit />} />
                       <Route path="create" element={<BlogPostCreate />} />
                     </Route>
-                    <Route path="*" element={<ErrorComponent />} />
                   </Route>
+                  <Route path="/login" element={<AuthPage type="login" />} />
+                  <Route
+                    path="/forgot-password"
+                    element={<AuthPage type="forgotPassword" />}
+                  />
+                  <Route
+                    path="update-password"
+                    element={<AuthPage type="updatePassword" />}
+                  />
+                  <Route path="*" element={<ErrorComponent />} />
                 </Routes>
                 <RefineKbar />
                 <UnsavedChangesNotifier />
