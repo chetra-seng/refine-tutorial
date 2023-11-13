@@ -6,6 +6,7 @@ import {
 } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 import {
   AuthPage,
@@ -47,9 +48,36 @@ function App() {
                   warnWhenUnsavedChanges: true,
                   projectId: "fY1RxZ-IudykQ-J2o429",
                 }}
+                resources={[
+                  {
+                    name: "blog_posts",
+                    list: "/blog-posts",
+                    show: "/blog-posts/show/:id",
+                    create: "/blog-posts/create",
+                    edit: "/blog-posts/edit/:id",
+                  },
+                ]}
               >
                 <Routes>
-                  <Route index element={<WelcomePage />} />
+                  <Route
+                    element={
+                      <ThemedLayoutV2>
+                        <Outlet />
+                      </ThemedLayoutV2>
+                    }
+                  >
+                    <Route
+                      index
+                      element={<NavigateToResource resource="blog_posts" />}
+                    />
+                    <Route path="blog-posts">
+                      <Route index element={<MuiInferencer />} />
+                      <Route path="show/:id" element={<MuiInferencer />} />
+                      <Route path="edit/:id" element={<MuiInferencer />} />
+                      <Route path="create" element={<MuiInferencer />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                  </Route>
                 </Routes>
                 <RefineKbar />
                 <UnsavedChangesNotifier />
