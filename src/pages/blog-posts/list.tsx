@@ -87,6 +87,7 @@ const BlogPostList: React.FC<IResourceComponentsProps> = () => {
             <>
               <EditButton hideText recordItemId={row.id} />
               <ShowButton hideText recordItemId={row.id} />
+              <DeleteButton hideText recordItemId={row.id} />
             </>
           );
         },

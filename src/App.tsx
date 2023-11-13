@@ -59,6 +59,9 @@ function App() {
                     show: "/blog-posts/show/:id",
                     create: "/blog-posts/create",
                     edit: "/blog-posts/edit/:id",
+                    meta: {
+                      canDelete: true,
+                    },
                   },
                 ]}
               >
